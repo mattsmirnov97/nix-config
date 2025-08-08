@@ -34,7 +34,7 @@
     homeManagerStateVersion = "24.05";
 
     perfTuning = { pkgs, ... }: {
-      nixpkgs.config.allowUnfree = true;      # required for Parallels Tools
+      nixpkgs.config.allowUnfree = true;          # required for Parallels Tools
       boot.kernelPackages = pkgs.linuxPackages_latest; # best eBPF perf
       boot.kernel.sysctl."kernel.unprivileged_bpf_disabled" = 1; # safer
     };
@@ -74,17 +74,13 @@
           ./system/nixos/default.nix
 
           ({ pkgs, ... }: {
-            # Parallels Guest Tools for native‑like UX
-            hardware.parallels.enable = true;
-
+            hardware.parallels.enable = true;           # Parallels Guest Tools
             machine = {
               role = "pc";
               x11 = { enable = true; dpi = desktopDetails.dpi; }; # HiDPI auto‑resize
               wayland.enable = true;
             };
-
-            # Increase mmap limit (Pixie PEM may need it)
-            boot.kernel.sysctl."vm.max_map_count" = 1048576;
+            boot.kernel.sysctl."vm.max_map_count" = 1048576; # Pixie friendly
           })
 
           nix-index-database.nixosModules.nix-index
@@ -156,5 +152,5 @@
         ];
       };
     };
-  }
+  };
 }
