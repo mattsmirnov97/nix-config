@@ -103,7 +103,7 @@
   #security.polkit.enable = lib.mkForce false;
 
   #to enable special font in kmscon
-  fonts.fontconfig.enable = lib.mkForce true;
+  fonts.fontconfig.enable = lib.mkForce false;
   services.kmscon = {
     enable = true;
     fonts = [
