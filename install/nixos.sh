@@ -49,8 +49,8 @@ swapon "/dev/${device}2"
 #echo "Generating config."
 #nixos-generate-config --root /mnt
 
-nix-env -iA nixos.git
-nix-env -iA nixos.nixFlakes
+nix-env -iA nixpkgs.nixVersions.git
+nix-env -iA nixos.nixVersions.stable
 
 git clone https://github.com/andreaugustoaragao/nix-config
 cd nix-config
