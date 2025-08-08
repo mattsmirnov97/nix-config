@@ -84,7 +84,7 @@ in {
         #"${modifier}+Return" = " exec ${pkgs.alacritty}/bin/alacritty msg create-window || ${pkgs.alacritty}/bin/alacritty";
         #"${modifier}+Return" = " exec ${pkgs.mlterm}/bin/mlterm -e fish";
         "${modifier}+Return" = "exec st -e fish";
-        "${modifier}+Shift+Return" = "exec ${pkgs.qutebrowser}/bin/qutebrowser";
+        "${modifier}+Shift+Return" = "exec ${pkgs.chromium}/bin/chromium";
         "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun -show-icons -dpi ${toString osConfig.machine.x11.dpi}";
         "${modifier}+h" = "focus left";
         "${modifier}+j" = "focus down";

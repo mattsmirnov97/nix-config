@@ -44,7 +44,7 @@ in {
     mimeApps = {
       enable = true;
       defaultApplications = let
-        browser = ["org.qutebrowser.qutebrowser.desktop"];
+        browser = ["chromium.desktop"];
         lf = ["lf.desktop"];
         nvim = ["nvim.desktop"];
       in {
