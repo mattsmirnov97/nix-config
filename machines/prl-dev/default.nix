@@ -1,33 +1,32 @@
-# Parallels VM‑specific configuration
+# Parallels VM-specific configuration
 { lib, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
 
-  # Hostname
   networking.hostName = "prl-dev";
 
-  # OpenGL / video acceleration (Parallels exposes virtio‑gpu)
-  hardware.opengl = {
-    enable         = true;
-    extraPackages  = [
+  # Graphics (renamed from hardware.opengl.*)
+  hardware.graphics = {
+    enable = true;
+    extraPackages = [
       pkgs.mesa.drivers
       pkgs.vaapiVdpau
       pkgs.libvdpau-va-gl
     ];
+    # enable32Bit = true; # нужно только на x86_64, на aarch64 не трогаем
   };
-  # `hardware.opengl.driSupport` was removed in 24.05 → no longer needed.
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Modern audio stack (PipeWire). Old `sound.enable` is deprecated.
+  # Audio: PipeWire
   hardware.pulseaudio.enable = false;
   services.pipewire = {
-    enable          = true;
-    alsa.enable     = true;
+    enable = true;
+    alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable    = true;
+    pulse.enable = true;
     wireplumber.enable = true;
   };
 

@@ -1,32 +1,7 @@
+{ config, pkgs, lib, ... }:
 {
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
-  chatGptIcon = pkgs.fetchurl {
-    url = "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/chatgpt-icon.png";
-    sha256 = "05xj1y2dkpj48v4vqip5mc9g22gqyr1y65w2w9nnq4s9h64fnyf7";
-  };
-  #redditIcon = pkgs.fetchurl {
-  #  url = "https://cdn.icon-icons.com/icons2/1195/PNG/512/1490889653-reddit_82537.png";
-  #  sha256 = "01ja74q5i797s0cfhr8byqq1bzzix23hswimij663ylm864w7lna";
-  #};
-  #twitterIcon = pkgs.fetchurl {
-  #  url = "https://cdn.icon-icons.com/icons2/836/PNG/512/Twitter_icon-icons.com_66803.png";
-  #  sha256 = "1mlqxxj2rwwv439lvdv4k4djhmwk92lv1riywk94r9hcmk5bbs92";
-  #};
-  #vimCheatSheetIcon = pkgs.fetchurl {
-  #  url = "https://cdn.icon-icons.com/icons2/1381/PNG/512/vim_94609.png";
-  #  sha256 = "0fnrcrsrrnchrgjbg0hszynj2g2m674b3nc4ky8pdb3zgc1490sc";
-  #};
-  #youtubeMusicIcon = pkgs.fetchurl {
-  #  url = "https://cdn.icon-icons.com/icons2/3132/PNG/512/youtube_music_social_network_song_multimedia_icon_192250.png";
-  #  sha256 = "0hxwh8x4xmpa9rpmscds9sip08a6xz9s58xncd2mlnyzh8pa447b";
-  #};
-in {
   home.packages = with pkgs; [
-    xdg-utils # provides cli tools such as `xdg-mime` `xdg-open`
+    xdg-utils
     xdg-user-dirs
   ];
 
@@ -34,19 +9,12 @@ in {
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";
 
-    # manage $XDG_CONFIG_HOME/mimeapps.list
-    # xdg search all desktop entries from $XDG_DATA_DIRS, check it by command:
-    #  echo $XDG_DATA_DIRS
-    # the system-level desktop entries can be list by command:
-    #   ls -l /run/current-system/sw/share/applications/
-    # the user-level desktop entries can be list by command(user ryan):
-    #  ls /etc/profiles/per-user/ryan/share/applications/
     mimeApps = {
       enable = true;
       defaultApplications = let
-        browser = ["chromium.desktop"];
-        lf = ["lf.desktop"];
-        nvim = ["nvim.desktop"];
+        browser = [ "chromium.desktop" ];
+        lf = [ "lf.desktop" ];
+        nvim = [ "nvim.desktop" ];
       in {
         "application/json" = nvim;
         "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
@@ -98,6 +66,11 @@ in {
     };
   };
 
+  # кладём локальную иконку в стандартную тему hicolor
+  xdg.dataFile."icons/hicolor/256x256/apps/chatgpt.png".source = ./icons/chatgpt.png;
+  # при желании можно продублировать другие размеры:
+  # xdg.dataFile."icons/hicolor/128x128/apps/chatgpt.png".source = ./icons/chatgpt.png;
+
   xdg.desktopEntries = {
     tmux-default = {
       name = "Tmux Default Session";
@@ -114,7 +87,7 @@ in {
     };
 
     teams = {
-      name = "Teams";
+      name = "Microsoft Teams";
       genericName = "Microsoft Teams";
       exec = "brave -app=https://teams.microsoft.com";
       icon = "teams";
@@ -124,7 +97,7 @@ in {
       name = "Youtube Music";
       genericName = "Youtube Music";
       exec = "brave -app=https://music.youtube.com";
-      icon = "youtube-music"; #youtubeMusicIcon;
+      icon = "youtube-music";
     };
 
     youtube = {
@@ -152,7 +125,7 @@ in {
       name = "Twitter";
       genericName = "Twitter";
       exec = "brave -app=https://x.com";
-      icon = "twitter"; #twitterIcon;
+      icon = "twitter";
     };
 
     whatsapp = {
@@ -165,7 +138,7 @@ in {
       name = "ChatGPT";
       genericName = "ChatGPT";
       exec = "brave -app=https://chat.openai.com";
-      icon = chatGptIcon;
+      icon = "chatgpt";  # используем имя из XDG-темы, не URL
     };
 
     gmail = {
@@ -182,7 +155,7 @@ in {
   };
 
   home.activation = with config.xdg; {
-    createXdgCacheAndDataDirs = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    createXdgCacheAndDataDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD mkdir --parents $VERBOSE_ARG \
         ${config.home.homeDirectory}/screenshots
 
@@ -202,8 +175,7 @@ in {
         ${config.home.homeDirectory}/downloads
     '';
 
-    #TODO remove this from here - should be in the java.nix file
-    createJavaCertificates = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    createJavaCertificates = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       if [ ! -f $HOME/.config/java-cacerts ]; then
         $DRY_RUN_CMD ${pkgs.p11-kit.bin}/bin/trust extract --format=java-cacerts --purpose=server-auth $HOME/.config/java-cacerts
       fi
