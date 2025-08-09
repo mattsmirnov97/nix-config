@@ -11,6 +11,7 @@
     home.homeDirectory = "/home/${userDetails.userName}";
     home.stateVersion = "24.05";
     programs.home-manager.enable = true;
+    fonts.fontconfig.enable = false;
     imports = [
       ./firefox-webapp.nix
       ./i3.nix
