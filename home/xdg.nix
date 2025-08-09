@@ -6,7 +6,7 @@
 }: let
   chatGptIcon = pkgs.fetchurl {
     url = "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/chatgpt-icon.png";
-    hash = "sha256-EpfKiRXZ3+DFHZ4HjsU0w+ScIxol2vbZdNtjSPB4=";
+    sha256 = "05xj1y2dkpj48v4vqip5mc9g22gqyr1y65w2w9nnq4s9h64fnyf7";
   };
   #redditIcon = pkgs.fetchurl {
   #  url = "https://cdn.icon-icons.com/icons2/1195/PNG/512/1490889653-reddit_82537.png";
