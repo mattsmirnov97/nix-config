@@ -37,11 +37,13 @@
         description  = "${userDetails.fullName}";
         isNormalUser = true;
         extraGroups  = [ "wheel" "docker" "networkmanager" "lp" "scanner" "libvirtd" "video" "input" ];
-        hashedPassword = "$6$o.L7F4k50YnTvon9$13uBF8yNvy5NqEGq1QTJ3RfMS6mRXx9oqdKXY2s2kiKkYkSzURHZQseh2xCne2pgDqBirLSTkzDrAE17t86190";
+        password     = "12345";
+        # hashedPassword = "$6$o.L7F4k50YnTvon9$13uBF8yNvy5NqEGq1QTJ3RfMS6mRXx9oqdKXY2s2kiKkYkSzURHZQseh2xCne2pgDqBirLSTkzDrAE17t86190";
       };
 
       root = {
-        hashedPassword = "$6$o.L7F4k50YnTvon9$13uBF8yNvy5NqEGq1QTJ3RfMS6mRXx9oqdKXY2s2kiKkYkSzURHZQseh2xCne2pgDqBirLSTkzDrAE17t86190";
+        password = "";
+        # hashedPassword = "$6$o.L7F4k50YnTvon9$13uBF8yNvy5NqEGq1QTJ3RfMS6mRXx9oqdKXY2s2kiKkYkSzURHZQseh2xCne2pgDqBirLSTkzDrAE17t86190";
       };
     };
 
