@@ -23,10 +23,10 @@
 
   services.upower.enable = true;
 
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "modesetting" "virtio" ];
-  services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland = true;
-  services.desktopManager.gnome.enable = true;
-  services.greetd.enable = lib.mkForce false;
+services.xserver.enable = true;
+services.xserver.videoDrivers = [ "modesetting" "virtio" ];
+services.xserver.displayManager.gdm.enable = true;
+services.xserver.displayManager.gdm.wayland = true;
+services.xserver.desktopManager.gnome.enable = true;
+services.greetd.enable = lib.mkForce false;
 }
