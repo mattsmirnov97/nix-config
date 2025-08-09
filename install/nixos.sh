@@ -80,5 +80,5 @@ while true; do
         * ) echo "Invalid option $virtSystem. Try again or Ctrl+C to exit.";;
     esac
 done
-nixos-install -L --show-trace --flake .#$virtSystem-dev < /dev/tty
+nixos-install --show-trace --flake .#$virtSystem-dev < /dev/tty
 
