@@ -28,8 +28,8 @@
 
   xdg.configFile = {
     "zathura/catppuccin-mocha".source = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/catppuccin/zathura/main/src/catppuccin-mocha";
-      hash = "sha256-POxMpm77Pd0qywy/jYzZBXF/uAKHSQ0hwtXD4wl8S2Q=";
+      url = "https://raw.githubusercontent.com/catppuccin/zathura/main/themes/catppuccin-mocha";
+      hash = "sha256-aUUT1ExI5kEeEawwqnW+n0XWe2b5j4tFdJbCh4XCFIs=";
     };
   };
 }
