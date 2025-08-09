@@ -33,11 +33,15 @@
     # USER SETUP
     users.users = {
       ${userDetails.userName} = {
-        createHome = true;
-        description = "${userDetails.fullName}";
+        createHome   = true;
+        description  = "${userDetails.fullName}";
         isNormalUser = true;
-        extraGroups = ["wheel" "docker" "networkmanager" "lp" "scanner" "libvirtd" "video" "input"];
-        hashedPassword = "$y$j9T$pWp.hZOPIktjMjkfox4jL1$HInH8LOOG9GsEV5bmbCLuhgB37Dzr1vfXUA1ka7EF59";
+        extraGroups  = [ "wheel" "docker" "networkmanager" "lp" "scanner" "libvirtd" "video" "input" ];
+        hashedPassword = "$6$2JjQU/36FZNL0Keh$TgsaM0D9DLtYabV4kziH9yLHuY6VnA1Dys0eqZlV6hsj6DNZUbLtC/0k98Mhx3MoYHL4Ldo.MPvye1t8TzR1B/";
+      };
+
+      root = {
+        hashedPassword = "$6$2JjQU/36FZNL0Keh$TgsaM0D9DLtYabV4kziH9yLHuY6VnA1Dys0eqZlV6hsj6DNZUbLtC/0k98Mhx3MoYHL4Ldo.MPvye1t8TzR1B/";
       };
     };
 
