@@ -88,7 +88,6 @@ in {
     _1password-gui
     gimp
     #calibre
-    zoom-us
     cheese
     goldwarden
     #bitwarden-desktop
